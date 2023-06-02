@@ -3,6 +3,8 @@ package com.study.jpa.chap05_practice.api;
 
 import com.study.jpa.chap05_practice.dto.*;
 import com.study.jpa.chap05_practice.service.PostService;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.Response;
@@ -62,6 +64,13 @@ public class PostApiController {
     }
 
     //게시물 등록
+    @Parameters({
+            @Parameter(name = "writer", description = "게시물의 작성자 이름을 쓰세요", example = "김베베", required = true)
+            , @Parameter(name = "title", description = "게시물의 제목을 쓰세요", example = "에베베베베베ㅔ", required = true)
+            , @Parameter(name = "content", description = "게시물의 내용을 쓰세요", example = "", required = true)
+            , @Parameter(name = "hashTags", description = "게시물의 해시태그를 나열해주세요", example = "['하하', '호호']", required = true)
+
+    })
     @PostMapping
     public ResponseEntity<?> create(
             @Validated @RequestBody PostCreateDTO dto
