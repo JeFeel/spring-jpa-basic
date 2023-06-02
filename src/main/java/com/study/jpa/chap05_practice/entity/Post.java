@@ -39,7 +39,7 @@ public class Post {
     @UpdateTimestamp
     private LocalDateTime updateDate; //수정시간
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", orphanRemoval = true)
     @Builder.Default //빌더 기본값을 따로 주고 싶기 때문에 써야됨
     private List<HashTag> hashTags = new ArrayList<>();
 
